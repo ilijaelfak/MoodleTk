@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Telekomunikacije.Models.ApplicationUser>
+@{
+    ViewBag.Title = "GetMembers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Svi Korisnici</h2>
+<table class="table table-bordered table-striped">
+<thead>
+    <tr>
+        <th>
+            Korisnik
+        </th>
+        
+       
+    </tr>
+</thead>   
+<tbody>
+    <tr>
+        <th>
+            Profesori
+        </th>
+        <th>
+            Rola
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+
+
+            <td>
+                @Html.ActionLink(item.Email,"MembersInfo",new { id = item.Id })
+            </td>
+            <td>
+                @item.Roles.
+            </td>
+
+        </tr>
+    }
+    <tr>
+        <th>
+            Studenti
+        </th>
+    </tr>
+    <tr>
+        <td>
+
+        </td>
+    </tr>
+</tbody>
+
+</table>
+

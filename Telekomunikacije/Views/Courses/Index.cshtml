@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Telekomunikacije.Models.Course> 
+@{
+    ViewBag.Title = "GetCourses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kursevi na Katedri Telekomunikacije</h2>
+
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Ime Kursa
+            </th>
+            <th>
+                ESPB
+            </th>
+        </tr>
+    </thead>
+  
+   
+    <tbody>
+        <tr>
+            <th>
+                Druga Godina
+            </th>
+        </tr>
+        @foreach (var item in Model.Where(c => c.Year == 2))
+        {
+        <tr>
+
+            <td>
+                @Html.ActionLink(@item.Name, "Enrolment", "Courses",new { id = item.Id},null)
+            </td>
+            <th>
+                @item.ESPB
+            </th>
+
+
+        </tr>
+        }
+    </tbody>
+    <tbody>
+        <tr>
+            <th>
+                Treca Godina
+            </th>
+        </tr>
+        @foreach (var item in Model.Where(c => c.Year == 3))
+        {
+        <tr>
+
+            <td>
+                @Html.ActionLink(@item.Name,"Enrolment","Courses", new { id = item.Id }, null)
+            </td>
+            <th>
+                @item.ESPB
+            </th>
+
+
+
+        </tr>
+        }
+    </tbody>
+    <tbody>
+        <tr>
+            <th>
+                Cetvrta Godina
+            </th>
+        </tr>
+        @foreach (var item in Model.Where(c => c.Year == 4))
+        {
+        <tr>
+
+            <td>
+                @Html.ActionLink(@item.Name, "Enrolment", "Courses", new { id = item.Id }, null)
+            </td>
+            <th>
+                @item.ESPB
+            </th>
+
+
+        </tr>
+        }
+    </tbody>
+
+</table> 
+
+
+
