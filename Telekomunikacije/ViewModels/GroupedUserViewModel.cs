@@ -6,10 +6,9 @@ using Telekomunikacije.Models;
 
 namespace Telekomunikacije.ViewModels
 {
-    public class UserRoleViewModel
+    public class GroupedUserViewModel
     {
-        public string Id { get; set; }
-        public string UserName { get; set; }
-        public List<string> Roles { get; set; }
+        public List<UserRoleViewModel> Users { get; set; }
+        public List<UserRoleViewModel> Admins { get; set; }
     }
 }

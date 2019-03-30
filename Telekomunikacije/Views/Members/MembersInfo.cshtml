@@ -1,0 +1,19 @@
+﻿@model Telekomunikacije.ViewModels.UserRoleViewModel
+@{
+    ViewBag.Title = "MembersInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul>
+    <li>
+        @Model.UserName
+    </li>
+    <li>
+        @foreach(var item in Model.Roles)
+        {
+            <li>
+                @item
+            </li>
+        }
+    </li>
+</ul>

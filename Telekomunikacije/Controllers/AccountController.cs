@@ -76,7 +76,12 @@ namespace Telekomunikacije.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(
+                model.UserName,
+                
+                model.Password,
+                model.RememberMe,
+                shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -152,17 +157,22 @@ namespace Telekomunikacije.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    IndexNumber = model.IndexNumber
+                    
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
 
                     //temp
 
-                    //var rolestore = new rolestore<identityrole>(new applicationdbcontext());
-                    //var rolemanager = new rolemanager<identityrole>(rolestore);
-                    //await rolemanager.createasync(new identityrole("candoeverything"));
-                    //await usermanager.addtoroleasync(user.id, "candoeverything");
+                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    await roleManager.CreateAsync(new IdentityRole("CanLearn"));
+                    await UserManager.AddToRoleAsync(user.Id, "CanLearn");
 
 
 

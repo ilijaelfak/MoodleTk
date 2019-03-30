@@ -23,6 +23,7 @@ namespace Telekomunikacije.Controllers
         [HttpPost]
         public ActionResult Create(Course course)
         {
+            
             if (!ModelState.IsValid)
             {
 
@@ -40,7 +41,14 @@ namespace Telekomunikacije.Controllers
             return View(course);
         }
 
-        
+        [HttpPost]
+        public ActionResult Delete(int Id)
+        {
+            var course = _context.Courses.Single(x => x.Id == Id);
+            _context.Courses.Remove(course);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Courses");
+        }
         
 
 
